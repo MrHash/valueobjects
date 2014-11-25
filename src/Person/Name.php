@@ -13,21 +13,21 @@ class Name implements ValueObjectInterface
      *
      * @var \ValueObjects\String\String
      */
-    private $firstName;
+    protected $firstName;
 
     /**
      * Middle name
      *
      * @var \ValueObjects\String\String
      */
-    private $middleName;
+    protected $middleName;
 
     /**
      * Last name
      *
      * @var \ValueObjects\String\String
      */
-    private $lastName;
+    protected $lastName;
 
     /**
      * Returns a Name objects form PHP native values
@@ -45,7 +45,7 @@ class Name implements ValueObjectInterface
         $middleName = new String($args[1]);
         $lastName   = new String($args[2]);
 
-        return new self($firstName, $middleName, $lastName);
+        return new static($firstName, $middleName, $lastName);
     }
 
     /**
