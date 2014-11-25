@@ -38,6 +38,12 @@ class CoordinateTest extends TestCase
     {
         Coordinate::fromNative(40.829137);
     }
+    
+    public function testFromNativeWithoutEllipsoid()
+    {
+        $fromNativeCoordinate = Coordinate::fromNative(40.829137, 16.555838);
+        $this->assertTrue($this->coordinate->sameValueAs($fromNativeCoordinate));
+    }
 
     public function testSameValueAs()
     {

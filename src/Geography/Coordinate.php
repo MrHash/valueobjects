@@ -40,10 +40,13 @@ class Coordinate implements ValueObjectInterface
         $latitude  = Latitude::fromNative($coordinate->getLatitude());
         $longitude = Longitude::fromNative($coordinate->getLongitude());
 
-        $nativeEllipsoid = isset($args[2]) ? $args[2] : null;
-        $ellipsoid = Ellipsoid::fromNative($nativeEllipsoid);
+        if (isset($args[2])) {
+            $ellipsoid = Ellipsoid::fromNative($args[2]);
+        } else {
+            $ellipsoid = null;
+        }
 
-        return new self($latitude, $longitude, $ellipsoid);
+        return new static($latitude, $longitude, $ellipsoid);
     }
 
     /**
