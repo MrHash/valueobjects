@@ -210,7 +210,10 @@ class Coordinate implements ValueObjectInterface
     {
         $latitude   = $coordinate->getLatitude()->toNative();
         $longitude  = $coordinate->getLongitude()->toNative();
-        $ellipsoid  = BaseEllipsoid::createFromName($coordinate->getEllipsoid()->toNative());
+        $ellipsoid  = $coordinate->getEllipsoid();
+        if (!is_null($ellipsoid)) {
+            $ellipsoid = BaseEllipsoid::createFromName($ellipsoid->toNative());
+        }
         $coordinate = new BaseCoordinate(array($latitude, $longitude), $ellipsoid);
 
         return $coordinate;
