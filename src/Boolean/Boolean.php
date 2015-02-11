@@ -68,6 +68,16 @@ class Boolean implements ValueObjectInterface
      */
     public function __toString()
     {
-        return $this->toNative() === true ? 'true' : 'false';
+        return $this->isTrue() ? 'true' : 'false';
+    }
+    
+    /**
+     * Returns the truthy value
+     *
+     * @return bool
+     */
+    public function isTrue()
+    {
+        return $this->toNative() === true;
     }
 }
